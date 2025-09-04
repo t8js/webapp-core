@@ -1,5 +1,6 @@
 import {readFile} from 'node:fs/promises';
 import {basename, extname} from 'node:path';
+import type {Request, Response} from 'express';
 import type {Controller} from '../types/Controller';
 import type {TransformContent} from '../types/TransformContent';
 import {getFilePath, GetFilePathParams} from '../utils/getFilePath';
@@ -8,8 +9,9 @@ import {emitLog} from '../utils/emitLog';
 type ZeroTransform = false | null | undefined;
 
 export type DirParams = Partial<
-    Pick<GetFilePathParams, 'name' | 'ext' | 'supportedLocales'>
+    Pick<GetFilePathParams, 'ext' | 'supportedLocales'>
 > & {
+    name?: string | undefined | ((req: Request, res: Response) => string | undefined);
     path: string;
     index?: string;
     transform?: TransformContent | ZeroTransform | (TransformContent | ZeroTransform)[];
@@ -41,7 +43,11 @@ export const dir: Controller<DirParams> = ({
         .filter(item => typeof item === 'function');
 
     return async (req, res) => {
-        let fileName = (name ?? req.params.name) || index;
+        let fileName: string | undefined;
+
+        if (typeof name === 'function')
+            fileName = name(req, res);
+        else fileName = (name ?? req.params.name) || index;
 
         emitLog(req.app, `Name: ${JSON.stringify(fileName)}`, {
             req,
