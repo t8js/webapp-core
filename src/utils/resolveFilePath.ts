@@ -2,7 +2,7 @@ import {join} from 'node:path';
 import {access} from 'node:fs/promises';
 import {toLanguage} from '../lib/lang/toLanguage';
 
-export type GetFilePathParams = {
+export type ResolveFilePathParams = {
     name: string;
     dir?: string;
     lang?: string;
@@ -18,14 +18,14 @@ export type GetFilePathParams = {
     index?: boolean;
 };
 
-export async function getFilePath({
+export async function resolveFilePath({
     name,
     dir = '.',
     lang,
     supportedLocales = [],
     ext,
     index,
-}: GetFilePathParams) {
+}: ResolveFilePathParams) {
     let cwd = process.cwd();
 
     let localeSet = new Set(supportedLocales);

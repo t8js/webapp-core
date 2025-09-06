@@ -3,7 +3,7 @@ import {basename, extname} from 'node:path';
 import type {Request, Response} from 'express';
 import type {Controller} from '../types/Controller';
 import type {TransformContent} from '../types/TransformContent';
-import {getFilePath, GetFilePathParams} from '../utils/getFilePath';
+import {resolveFilePath, ResolveFilePathParams} from '../utils/resolveFilePath';
 import {emitLog} from '../utils/emitLog';
 
 const defaultExt = ['html', 'htm'];
@@ -12,7 +12,7 @@ const defaultName = (req: Request) => req.path.split('/').at(-1);
 type ZeroTransform = false | null | undefined;
 
 export type DirParams = Partial<
-    Pick<GetFilePathParams, 'supportedLocales' | 'index'>
+    Pick<ResolveFilePathParams, 'supportedLocales' | 'index'>
 > & {
     /** Directory path to serve files from. */
     path: string;
@@ -26,7 +26,7 @@ export type DirParams = Partial<
      *
      * @defaultValue `['html', 'htm']`
      */
-    ext?: GetFilePathParams['ext'];
+    ext?: ResolveFilePathParams['ext'];
     /**
      * Custom transforms applied to the file content.
      *
@@ -78,7 +78,7 @@ export const dir: Controller<DirParams> = ({
             return;
         }
 
-        let filePath = await getFilePath({
+        let filePath = await resolveFilePath({
             name: fileName,
             dir: path,
             ext,
