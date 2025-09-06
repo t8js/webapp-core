@@ -70,7 +70,7 @@ export const dir: Controller<DirParams> = ({
             res,
         });
 
-        if (!fileName) {
+        if (fileName === undefined) {
             res.status(404).send(
                 await req.app.renderStatus?.(req, res),
             );
