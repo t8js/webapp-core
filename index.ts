@@ -22,6 +22,7 @@ export * from './src/utils/cspNonce';
 export * from './src/utils/emitLog';
 export * from './src/utils/getFilePath';
 export * from './src/utils/getStatusMessage';
+export * from './src/utils/injectNonce';
 export * from './src/utils/renderStatus';
 export * from './src/utils/serializeState';
 export * from './src/utils/servePipeableStream';

@@ -7,7 +7,15 @@ export type GetFilePathParams = {
     dir?: string;
     lang?: string;
     supportedLocales?: string[];
+    /** Allowed file extensions. */
     ext?: string | string[];
+    /**
+     * Whether an index file should be checked if the resolved file name
+     * doesn't correspond to an existing file.
+     *
+     * @defaultValue `true`
+     */
+    index?: boolean;
 };
 
 export async function getFilePath({
@@ -16,6 +24,7 @@ export async function getFilePath({
     lang,
     supportedLocales = [],
     ext,
+    index,
 }: GetFilePathParams) {
     let cwd = process.cwd();
 
@@ -45,13 +54,36 @@ export async function getFilePath({
 
     for (let item of names) {
         for (let itemExt of exts) {
-            let path = join(cwd, dir, itemExt ? `${item}.${itemExt}` : item);
+            let path = join(
+                cwd,
+                dir,
+                `${item}${itemExt ? `.${itemExt}` : ''}`,
+            );
 
             try {
                 await access(path);
                 return path;
             }
             catch {}
+        }
+    }
+
+    if (index) {
+        for (let item of names) {
+            for (let itemExt of exts) {
+                let path = join(
+                    cwd,
+                    dir,
+                    item,
+                    `index${itemExt ? `.${itemExt}` : ''}`,
+                );
+
+                try {
+                    await access(path);
+                    return path;
+                }
+                catch {}
+            }
         }
     }
 }

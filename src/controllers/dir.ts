@@ -6,14 +6,34 @@ import type {TransformContent} from '../types/TransformContent';
 import {getFilePath, GetFilePathParams} from '../utils/getFilePath';
 import {emitLog} from '../utils/emitLog';
 
+const defaultExt = ['html', 'htm'];
+const defaultName = (req: Request) => req.path.split('/').at(-1);
+
 type ZeroTransform = false | null | undefined;
 
 export type DirParams = Partial<
-    Pick<GetFilePathParams, 'ext' | 'supportedLocales'>
+    Pick<GetFilePathParams, 'supportedLocales' | 'index'>
 > & {
-    name?: string | undefined | ((req: Request, res: Response) => string | undefined);
+    /** Directory path to serve files from. */
     path: string;
-    index?: string;
+    /**
+     * File name.
+     * By default, the portion of `req.path` after the last slash.
+     */
+    name?: string | undefined | ((req: Request, res: Response) => string | undefined);
+    /**
+     * Allowed file extensions.
+     *
+     * @defaultValue `['html', 'htm']`
+     */
+    ext?: GetFilePathParams['ext'];
+    /**
+     * Custom transforms applied to the file content.
+     *
+     * Example: Use `injectNonce` from this package to inject the `nonce`
+     * value generated for the current request into the `{{nonce}}`
+     * placeholders in an HTML file.
+     */
     transform?: TransformContent | ZeroTransform | (TransformContent | ZeroTransform)[];
     supportedLocales?: string[];
 };
@@ -30,11 +50,11 @@ export type DirParams = Partial<
  */
 export const dir: Controller<DirParams> = ({
     path,
-    name,
-    index,
-    ext = ['html', 'htm'],
+    name = defaultName,
+    ext = defaultExt,
     transform,
     supportedLocales,
+    index,
 }) => {
     if (typeof path !== 'string')
         throw new Error(`'path' is not a string`);
@@ -43,11 +63,7 @@ export const dir: Controller<DirParams> = ({
         .filter(item => typeof item === 'function');
 
     return async (req, res) => {
-        let fileName: string | undefined;
-
-        if (typeof name === 'function')
-            fileName = name(req, res);
-        else fileName = (name ?? req.params.name) || index;
+        let fileName = typeof name === 'function' ? name(req, res) : name;
 
         emitLog(req.app, `Name: ${JSON.stringify(fileName)}`, {
             req,
@@ -68,6 +84,7 @@ export const dir: Controller<DirParams> = ({
             ext,
             supportedLocales,
             lang: req.ctx?.lang,
+            index,
         });
 
         emitLog(req.app, `Path: ${JSON.stringify(filePath)}`, {
@@ -91,11 +108,6 @@ export const dir: Controller<DirParams> = ({
                 path: filePath,
                 name: basename(filePath, extname(filePath)),
             });
-
-        let nonce = req.ctx?.nonce;
-
-        if (nonce)
-            content = content.replace(/\{\{nonce\}\}/g, nonce);
 
         res.send(content);
     };
