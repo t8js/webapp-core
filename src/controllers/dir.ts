@@ -54,7 +54,7 @@ export const dir: Controller<DirParams> = ({
     ext = defaultExt,
     transform,
     supportedLocales,
-    index,
+    index = true,
 }) => {
     if (typeof path !== 'string')
         throw new Error(`'path' is not a string`);
