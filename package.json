@@ -8,7 +8,8 @@
     "clean": "node -e \"require('node:fs').rmSync('dist', {force: true, recursive: true});\"",
     "compile": "npx esbuild index.ts --bundle --outdir=dist --platform=node --external:express",
     "prepublishOnly": "npm run build",
-    "preversion": "npx npm-run-all typecheck build",
+    "preversion": "npx npm-run-all typecheck shape build",
+    "shape": "npx codeshape",
     "typecheck": "tsc --noEmit"
   },
   "repository": {
@@ -26,6 +27,6 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
-    "@t8/date-format": "^1.0.4"
+    "@t8/date-format": "^1.0.7"
   }
 }
