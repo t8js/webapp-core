@@ -34,7 +34,8 @@ export function log(
   if (data instanceof Error) {
     error = data;
 
-    if (data.message) message = `${message ? message + " - " : ""}${data.message}`;
+    if (data.message)
+      message = `${message ? `${message} - ` : ""}${data.message}`;
 
     if (!level) level = "error";
   }
