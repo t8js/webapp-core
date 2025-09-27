@@ -1,19 +1,19 @@
 /* eslint-disable import/no-default-export */
 
-declare module '*.svg' {
-    let content: string;
+declare module "*.svg" {
+  let content: string;
 
-    export default content;
+  export default content;
 }
 
-declare module '*.txt' {
-    let content: string;
+declare module "*.txt" {
+  let content: string;
 
-    export default content;
+  export default content;
 }
 
-declare module '*.html' {
-    let content: string;
+declare module "*.html" {
+  let content: string;
 
-    export default content;
+  export default content;
 }

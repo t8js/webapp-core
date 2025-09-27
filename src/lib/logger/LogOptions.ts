@@ -1,8 +1,8 @@
-import type {Request} from 'express';
+import type { Request } from "express";
 
 export type LogOptions = {
-    timestamp?: number;
-    level?: 'debug' | 'info' | 'warn' | 'error';
-    data?: unknown;
-    req?: Request;
+  timestamp?: number;
+  level?: "debug" | "info" | "warn" | "error";
+  data?: unknown;
+  req?: Request;
 };

@@ -4,7 +4,7 @@
  * @example 'fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5'
  */
 export function getLocales(languageRange: string | undefined): string[] {
-    return (languageRange ?? '')
-        .split(/[,;]\s*/)
-        .filter(s => !s.startsWith('q=') && s !== '*');
+  return (languageRange ?? "")
+    .split(/[,;]\s*/)
+    .filter((s) => !s.startsWith("q=") && s !== "*");
 }
