@@ -27,6 +27,6 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@t8/date-format": "^1.0.8"
+    "@t8/date-format": "^1.0.9"
   }
 }
