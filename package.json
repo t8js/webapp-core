@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "npx npm-run-all clean compile",
-    "clean": "node -e \"require('node:fs').rmSync('dist', {force: true, recursive: true});\"",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { force: true, recursive: true });\"",
     "compile": "npx esbuild index.ts --bundle --outdir=dist --platform=node --external:express",
     "prepublishOnly": "npm run build",
     "preversion": "npx npm-run-all typecheck shape build",
@@ -17,7 +17,7 @@
     "url": "git+https://github.com/t8js/webapp-core.git"
   },
   "author": "axtk",
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "express": ">=5"
   },
