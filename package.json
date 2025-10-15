@@ -23,10 +23,10 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
-    "@types/node": "^24.3.0",
-    "typescript": "^5.9.2"
+    "@types/node": "^24.7.2",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@t8/date-format": "^1.0.7"
+    "@t8/date-format": "^1.0.8"
   }
 }
