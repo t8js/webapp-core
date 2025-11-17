@@ -3,15 +3,17 @@
   "version": "0.1.10",
   "description": "",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "npx npm-run-all clean compile",
+    "build": "npx npm-run-all clean compile types",
     "clean": "node -e \"require('node:fs').rmSync('dist', { force: true, recursive: true });\"",
     "compile": "npx esbuild index.ts --bundle --outdir=dist --platform=node --format=esm --external:express",
     "prepublishOnly": "npm run build",
     "preversion": "npx npm-run-all typecheck shape build",
     "shape": "npx codeshape",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "types": "tsc --emitDeclarationOnly"
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,6 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@t8/date-format": "^1.0.11"
+    "@t8/date-format": "^1.0.12"
   }
 }
