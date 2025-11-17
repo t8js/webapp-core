@@ -1,6 +1,6 @@
 import { randomBytes } from "node:crypto";
-import type { Middleware } from "../types/Middleware";
-import { emitLog } from "../utils/emitLog";
+import type { Middleware } from "../types/Middleware.ts";
+import { emitLog } from "../utils/emitLog.ts";
 
 /**
  * Initializes the request context on `req.ctx`.

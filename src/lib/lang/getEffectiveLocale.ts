@@ -1,4 +1,4 @@
-import { toLanguage } from "./toLanguage";
+import { toLanguage } from "./toLanguage.ts";
 
 type Match = {
   index?: number;

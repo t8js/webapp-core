@@ -1,5 +1,5 @@
-import type { Controller } from "../types/Controller";
-import { emitLog } from "../utils/emitLog";
+import type { Controller } from "../types/Controller.ts";
+import { emitLog } from "../utils/emitLog.ts";
 
 export const unhandledRoute: Controller = () => async (req, res) => {
   emitLog(req.app, "Unhandled route", {

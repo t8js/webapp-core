@@ -1,5 +1,5 @@
 import type { Application } from "express";
-import type { LogEventPayload } from "../types/LogEventPayload";
+import type { LogEventPayload } from "../types/LogEventPayload.ts";
 
 export function emitLog(
   app: Application,

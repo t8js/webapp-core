@@ -1,9 +1,9 @@
 import type { CookieOptions } from "express";
-import { getEffectiveLocale } from "../lib/lang/getEffectiveLocale";
-import { getLocales } from "../lib/lang/getLocales";
-import { toLanguage } from "../lib/lang/toLanguage";
-import type { Middleware } from "../types/Middleware";
-import { emitLog } from "../utils/emitLog";
+import { getEffectiveLocale } from "../lib/lang/getEffectiveLocale.ts";
+import { getLocales } from "../lib/lang/getLocales.ts";
+import { toLanguage } from "../lib/lang/toLanguage.ts";
+import type { Middleware } from "../types/Middleware.ts";
+import { emitLog } from "../utils/emitLog.ts";
 
 const defaultLangCookieOptions: CookieOptions = {
   maxAge: 90 * 86_400_000,

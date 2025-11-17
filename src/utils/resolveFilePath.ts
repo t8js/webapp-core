@@ -1,6 +1,6 @@
 import { access } from "node:fs/promises";
 import { join } from "node:path";
-import { toLanguage } from "../lib/lang/toLanguage";
+import { toLanguage } from "../lib/lang/toLanguage.ts";
 
 export type ResolveFilePathParams = {
   name: string;

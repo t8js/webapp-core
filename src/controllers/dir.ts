@@ -1,13 +1,13 @@
 import { readFile } from "node:fs/promises";
 import { basename, extname } from "node:path";
 import type { Request, Response } from "express";
-import type { Controller } from "../types/Controller";
-import type { TransformContent } from "../types/TransformContent";
-import { emitLog } from "../utils/emitLog";
+import type { Controller } from "../types/Controller.ts";
+import type { TransformContent } from "../types/TransformContent.ts";
+import { emitLog } from "../utils/emitLog.ts";
 import {
   type ResolveFilePathParams,
   resolveFilePath,
-} from "../utils/resolveFilePath";
+} from "../utils/resolveFilePath.ts";
 
 const defaultExt = ["html", "htm"];
 const defaultName = (req: Request) => req.path.split("/").at(-1);

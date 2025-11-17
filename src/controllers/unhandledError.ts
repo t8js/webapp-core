@@ -1,5 +1,5 @@
-import type { ErrorController } from "../types/ErrorController";
-import { emitLog } from "../utils/emitLog";
+import type { ErrorController } from "../types/ErrorController.ts";
+import { emitLog } from "../utils/emitLog.ts";
 
 export const unhandledError: ErrorController = () => async (err, req, res) => {
   emitLog(req.app, "Unhandled error", {

@@ -1,5 +1,5 @@
 import { STATUS_CODES } from "node:http";
-import type { RenderStatus } from "../types/RenderStatus";
+import type { RenderStatus } from "../types/RenderStatus.ts";
 
 export const renderStatus: RenderStatus = async (req, res) => {
   let { id, nonce } = req.ctx;

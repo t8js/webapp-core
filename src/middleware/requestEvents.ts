@@ -1,6 +1,6 @@
-import type { Middleware } from "../types/Middleware";
-import { emitLog } from "../utils/emitLog";
-import { getStatusMessage } from "../utils/getStatusMessage";
+import type { Middleware } from "../types/Middleware.ts";
+import { emitLog } from "../utils/emitLog.ts";
+import { getStatusMessage } from "../utils/getStatusMessage.ts";
 
 /**
  * Adds event handlers, like logging, to essential request phases.

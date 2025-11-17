@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import { formatDate, formatDuration } from "@t8/date-format";
-import { ansiEscapeCodes } from "./ansiEscapeCodes";
-import type { LogOptions } from "./LogOptions";
-import { levelColors } from "./levelColors";
+import { ansiEscapeCodes } from "./ansiEscapeCodes.ts";
+import type { LogOptions } from "./LogOptions.ts";
+import { levelColors } from "./levelColors.ts";
 
 function isEmpty(x: unknown) {
   if (x === null || x === undefined || x === "") return true;

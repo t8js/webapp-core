@@ -1,11 +1,11 @@
 import EventEmitter from "node:events";
 import express from "express";
-import { log } from "../lib/logger/log";
-import { requestEvents } from "../middleware/requestEvents";
-import { start } from "../middleware/start";
-import type { LogEventPayload } from "../types/LogEventPayload";
-import { emitLog } from "./emitLog";
-import { renderStatus } from "./renderStatus";
+import { log } from "../lib/logger/log.ts";
+import { requestEvents } from "../middleware/requestEvents.ts";
+import { start } from "../middleware/start.ts";
+import type { LogEventPayload } from "../types/LogEventPayload.ts";
+import { emitLog } from "./emitLog.ts";
+import { renderStatus } from "./renderStatus.ts";
 
 export function createApp(init?: () => void | Promise<void>) {
   let app = express();

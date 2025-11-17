@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { emitLog } from "./emitLog";
-import { getStatusMessage } from "./getStatusMessage";
+import { emitLog } from "./emitLog.ts";
+import { getStatusMessage } from "./getStatusMessage.ts";
 
 type PipeableStream = {
   pipe: <Writable extends NodeJS.WritableStream>(

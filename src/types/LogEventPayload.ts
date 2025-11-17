@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import type { LogLevel } from "./LogLevel";
+import type { LogLevel } from "./LogLevel.ts";
 
 export type LogEventPayload = {
   timestamp?: number;
