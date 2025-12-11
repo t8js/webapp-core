@@ -6,13 +6,10 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "npx npm-run-all clean compile types",
     "clean": "node -e \"require('node:fs').rmSync('dist', { force: true, recursive: true });\"",
     "compile": "npx esbuild index.ts --bundle --outdir=dist --platform=node --format=esm --external:express",
-    "prepublishOnly": "npm run build",
-    "preversion": "npx npm-run-all shape build",
-    "shape": "npx codeshape --typecheck",
-    "types": "tsc --emitDeclarationOnly"
+    "preversion": "npx npm-run-all clean shape compile",
+    "shape": "npx codeshape --typecheck --emit-types"
   },
   "repository": {
     "type": "git",
@@ -24,11 +21,10 @@
     "express": ">=5"
   },
   "devDependencies": {
-    "@types/express": "^5.0.3",
-    "@types/node": "^24.7.2",
-    "typescript": "^5.9.3"
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.0"
   },
   "dependencies": {
-    "@t8/date-format": "^1.0.14"
+    "@t8/date-format": "^1.0.15"
   }
 }
