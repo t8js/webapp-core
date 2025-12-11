@@ -2,8 +2,9 @@
   "name": "@t8/webapp-core",
   "version": "0.1.12",
   "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "type": "module",
   "scripts": {
     "preversion": "npx codeshape"
