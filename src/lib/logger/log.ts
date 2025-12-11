@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { formatDate, formatDuration } from "@t8/date-format";
 import { ansiEscapeCodes } from "./ansiEscapeCodes.ts";
 import type { LogOptions } from "./LogOptions.ts";
