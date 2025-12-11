@@ -6,10 +6,7 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "clean": "node -e \"require('node:fs').rmSync('dist', { force: true, recursive: true });\"",
-    "compile": "npx esbuild index.ts --bundle --outdir=dist --platform=node --format=esm --external:express",
-    "preversion": "npx npm-run-all clean shape compile",
-    "shape": "npx codeshape --typecheck --emit-types"
+    "preversion": "npx codeshape"
   },
   "repository": {
     "type": "git",
